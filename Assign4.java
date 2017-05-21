@@ -1,5 +1,5 @@
 import java.lang.*;
-
+import java.lang.Math;
 public class Assign4
 {
    public static void main(String args[])
@@ -208,4 +208,40 @@ class BarcodeImage implements Cloneable
    {  
       return (BarcodeImage)super.clone();  
    }
+}
+
+//Accessors for actualWidth and actualHeight 
+public int getActualWidth() 
+{ 
+   return actualWidth; 
+}
+public int getActualHeight() 
+{ 
+   return actualHeight; 
+}
+
+//use the left column to determine height
+private int computeSignalHeight()
+{
+   int height = 0;
+   for (int row = 0; row < BarcodeImage.MAX_HEIGHT; row++)
+   {
+   if (image.getPixel(row, 0) == true)
+   {
+      height++;
+   }
+   return height;
+}
+   
+//use the bottom border to determine width
+private int computeSignalWidth()
+{
+   int width = 0;
+   for (int col = 0; col < BarcodeImage.MAX_WIDTH; col++)
+   {
+   if (image.getPixel(BarcodeImage.MAX_HEIGHT - 1, col) == true)
+   {
+      width++;
+   }
+   return width;
 }
